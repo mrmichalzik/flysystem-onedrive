@@ -22,7 +22,7 @@ class OneDriveAdapter extends AbstractAdapter
         $this->graph = $graph;
         $this->usePath = $usePath;
 
-        $this->setPathPrefix('/drive/'.$prefix.($this->usePath ? ':' : ''));
+        $this->setPathPrefix('/'.$prefix.($this->usePath ? ':' : ''));
     }
 
     /**
@@ -120,7 +120,7 @@ class OneDriveAdapter extends AbstractAdapter
         try {
             $this->graph->createRequest('DELETE', $endpoint)->execute();
         } catch (\Exception $e) {
-            return false;
+            return $e;
         }
 
         return true;
@@ -234,7 +234,7 @@ class OneDriveAdapter extends AbstractAdapter
                 }
             }
         } catch (\Exception $e) {
-            return false;
+            return $e;
         }
 
         return $results;
@@ -312,7 +312,7 @@ class OneDriveAdapter extends AbstractAdapter
                 ->attachBody($contents)
                 ->execute();
         } catch (\Exception $e) {
-            return false;
+            return $e;
         }
 
         return $this->normalizeResponse($response->getBody(), $path);
