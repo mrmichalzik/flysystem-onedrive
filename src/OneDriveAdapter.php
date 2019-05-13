@@ -21,8 +21,6 @@ class OneDriveAdapter extends AbstractAdapter
     {
         $this->graph = $graph;
         $this->usePath = $usePath;
-
-        $this->setPathPrefix('/'.$prefix.($this->usePath ? ':' : ''));
     }
 
     /**
